@@ -67,7 +67,7 @@ public class SinglyLinkedList {
         // กำหนดตัวแปร currentNode เพื่อใช้เก็บโหนดปัจจุบันที่จะแสดงค่าข้อมูล
         Node currentNode = this.head;
 
-        // เงื่อนไขในการวนลูป คือ ถ้า currentNode ไม่เท่ากับ null ให้ทำการวนลูปต่อไป
+        // เงื่อนไขในการวนลูป คือถ้า currentNode ไม่เท่ากับ null ให้ทำการวนลูปต่อไป
         while (currentNode != null) {
 
             // กำหนดตัวแปร value เพื่อเก็บค่าข้อมูลที่อยู่ในโหนดปัจจุบัน
@@ -80,7 +80,7 @@ public class SinglyLinkedList {
             String nextAddress = currentNode.next != null ? String.valueOf(System.identityHashCode(currentNode.next)) : "null";
 
             // แสดงค่าข้อมูลที่อยู่ในโหนดปัจจุบัน
-            System.out.print("[" + value + "][" + addr + "] -> [Next: " + nextAddress + "]" + "\n");
+            System.out.print("[" + value + "][" + addr + "] -> [" + nextAddress + "]" + "\n");
 
             // ถ้าโหนดปัจจุบันไม่ใช่โหนดสุดท้ายในลิงค์ลิสต์ ให้แสดงเครื่องหมาย `->` ต่อท้าย
             if (currentNode.next != null) {
