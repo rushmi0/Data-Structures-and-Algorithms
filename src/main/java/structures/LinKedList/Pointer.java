@@ -30,4 +30,5 @@ public class Pointer {
         Integer addr2 = System.identityHashCode(map2);
         System.out.println(addr2);
     }
+
 }
