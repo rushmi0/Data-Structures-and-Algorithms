@@ -1,6 +1,6 @@
 package structures.LinKedList;
 
-public class LinkedList {
+public class SinglyLinkedList {
 
 
     /**
@@ -41,7 +41,7 @@ public class LinkedList {
 
 
     // กำหนดคอนสตรักเตอร์สำหรับคลาส LinkedList
-    public LinkedList(int value) {
+    public SinglyLinkedList(int value) {
 
         /**
          * ในคอนสตรักเตอร์ของคลาส LinkedList จะมีการสร้างโหนดแรกของลิงค์ลิสต์ โดยใช้ค่า value ที่รับเข้ามาเพื่อเก็บในโหนด
@@ -61,13 +61,34 @@ public class LinkedList {
     }
 
 
+    // ใช้สำหรับแสดงค่าข้อมูลทั้งหมดในลิงค์ลิสต์
     public void printList() {
-        // ใช้สำหรับแสดงค่าข้อมูลทั้งหมดในลิงค์ลิสต์
-        Node currentNode = this.head; // กำหนดตัวแปร currentNode เพื่อใช้เก็บโหนดปัจจุบันที่จะแสดงค่าข้อมูล
+
+        // กำหนดตัวแปร currentNode เพื่อใช้เก็บโหนดปัจจุบันที่จะแสดงค่าข้อมูล
+        Node currentNode = this.head;
+
+        // เงื่อนไขในการวนลูป คือ ถ้า currentNode ไม่เท่ากับ null ให้ทำการวนลูปต่อไป
         while (currentNode != null) {
-            // ทำการวนลูปเพื่อแสดงค่าข้อมูลทั้งหมดในลิงค์ลิสต์จนกว่า currentNode จะเป็น null
-            System.out.print(currentNode.value + " -> ");
-            currentNode = currentNode.next; // กำหนดให้ currentNode เป็นโหนดถัดไปในลิงค์ลิสต์
+
+            // กำหนดตัวแปร value เพื่อเก็บค่าข้อมูลที่อยู่ในโหนดปัจจุบัน
+            int value = currentNode.value;
+
+            // กำหนดตัวแปร address เพื่อเก็บที่อยู่ของโหนดปัจจุบัน
+            String addr = String.valueOf(System.identityHashCode(currentNode));
+
+            // กำหนดตัวแปร nextAddress เพื่อเก็บที่อยู่ของโหนดถัดไปในลิงค์ลิสต์
+            String nextAddress = currentNode.next != null ? String.valueOf(System.identityHashCode(currentNode.next)) : "null";
+
+            // แสดงค่าข้อมูลที่อยู่ในโหนดปัจจุบัน
+            System.out.print("[" + value + "][" + addr + "] -> [Next: " + nextAddress + "]" + "\n");
+
+            // ถ้าโหนดปัจจุบันไม่ใช่โหนดสุดท้ายในลิงค์ลิสต์ ให้แสดงเครื่องหมาย `->` ต่อท้าย
+            if (currentNode.next != null) {
+                System.out.print(" -> ");
+            }
+
+            // กำหนดให้ currentNode เป็นโหนดถัดไปในลิงค์ลิสต์
+            currentNode = currentNode.next;
         }
     }
 
@@ -94,13 +115,27 @@ public class LinkedList {
     public void append(int value) {
         Node newNode = new Node(value);
 
-        if (length == 0) {  // ในกรณีนี้ ถ้าค่า length ของลิงค์ลิสต์เป็น 0 แสดงว่า `Linked List` ยังไม่มีโหนดอยู่เลย จึงจะต้องสร้างโหนดแรกของ `Linked List` ขึ้นมา
+        // ในกรณีนี้ ถ้าค่า length ของลิงค์ลิสต์เป็น 0 แสดงว่า `Linked List` ยังไม่มีโหนดอยู่เลย จึงจะต้องสร้างโหนดแรกของ `Linked List` ขึ้นมา
+        if (length == 0) {
+
+            // กำหนดโหนดแรกในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
             this.head = newNode;
+
+            // กำหนดโหนดสุดท้ายในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
             this.tail = newNode;
+
         } else { // ในกรณีนี้ ถ้าค่า length ของลิงค์ลิสต์มากกว่า 0 แสดงว่าลิงค์ลิสต์มีโหนดอยู่แล้ว จึงจะต้องเพิ่มโหนดใหม่เข้าไปในลิงค์ลิสต์
-            this.tail.next = newNode; // กำหนดให้โหนดถัดไปของโหนดสุดท้ายในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
-            this.tail = newNode; // กำหนดโหนดสุดท้ายในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
+
+            // กำหนดให้โหนดถัดไปของโหนดสุดท้ายในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
+            this.tail.next = newNode;
+
+            // กำหนดโหนดสุดท้ายในลิงค์ลิสต์เป็นโหนดใหม่ที่สร้างขึ้น
+            this.tail = newNode;
+
         }
+
+        // เพิ่มค่า length ของลิงค์ลิสต์เพิ่มขึ้น 1
+        this.length++;
 
     }
 
