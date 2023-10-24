@@ -81,7 +81,7 @@ public class SinglyLinkedList {
             String nextAddress = currentNode.next != null ? String.valueOf(System.identityHashCode(currentNode.next)) : "null";
 
             // แสดงค่าข้อมูลที่อยู่ในโหนดปัจจุบัน
-            System.out.print("[" + value + "][" + addr + "] -> [" + nextAddress + "]");
+            System.out.print("[value:" + value + "][address:" + addr + "] => [pointer:" + nextAddress + "]");
 
             // ถ้าโหนดปัจจุบันไม่ใช่โหนดสุดท้ายในลิงค์ลิสต์ ให้แสดงเครื่องหมาย `->` ต่อท้าย
             if (currentNode.next != null) {
@@ -114,6 +114,7 @@ public class SinglyLinkedList {
 
     // `append` Method นี้มีหน้าที่ใช้สำหรับเพิ่มโหนดใหม่เข้าไปในลิงค์ลิสต์
     public void append(int value) {
+
         Node newNode = new Node(value);
 
         // ในกรณีนี้ ถ้าค่า length ของลิงค์ลิสต์เป็น 0 แสดงว่า `Linked List` ยังไม่มีโหนดอยู่เลย จึงจะต้องสร้างโหนดแรกของ `Linked List` ขึ้นมา
